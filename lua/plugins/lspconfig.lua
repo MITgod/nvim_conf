@@ -32,5 +32,20 @@ return {
     opts = {
       servers = {},
     },
+    keys = {
+      {
+        "<leader>uf",
+        function()
+          require("lazyvim.util").toggle("autoformat")
+          -- Show current state
+          if vim.g.autoformat then
+            vim.notify("Autoformat enabled", vim.log.levels.INFO)
+          else
+            vim.notify("Autoformat disabled", vim.log.levels.INFO)
+          end
+        end,
+        desc = "Toggle format on save",
+      },
+    },
   },
 }
