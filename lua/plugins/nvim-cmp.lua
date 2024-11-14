@@ -3,7 +3,7 @@ return {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.completion.autocomplete = true
+      opts.completion.autocomplete = false
       opts.mapping["<CR>"] = cmp.mapping.confirm({ select = true })
       opts.mapping["<C-Space>"] = cmp.mapping(function()
         if cmp.visible() then
