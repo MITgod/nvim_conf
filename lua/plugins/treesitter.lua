@@ -10,11 +10,11 @@ return {
         "vim",
         "html",
       },
-      highlight = {
-        enable = true,
-        -- This ensures your custom file types get HTML highlighting
-        additional_vim_regex_highlighting = false,
-      },
     },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+      vim.treesitter.language.register("html", "wssp")
+      vim.treesitter.language.register("html", "wssi")
+    end,
   },
 }

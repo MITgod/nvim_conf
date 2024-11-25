@@ -61,8 +61,3 @@ require("lazy").setup({
     },
   },
 })
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.wssp", "*.wssi" },
-  command = "set filetype=html",
-})
