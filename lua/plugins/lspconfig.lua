@@ -26,25 +26,22 @@ vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
   return vim.lsp.util.open_floating_preview(markdown_lines, "markdown", config)
 end
 
+-- Disable autoformat for some buffers
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "cpp", "h" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
+
 return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      servers = {},
-    },
-    keys = {
-      {
-        "<leader>uf",
-        function()
-          require("lazyvim.util").toggle("autoformat")
-          -- Show current state
-          if vim.g.autoformat then
-            vim.notify("Autoformat enabled", vim.log.levels.INFO)
-          else
-            vim.notify("Autoformat disabled", vim.log.levels.INFO)
-          end
-        end,
-        desc = "Toggle format on save",
+      servers = {
+        html = {
+          filetypes = { "html", "wssp", "wssi" },
+        },
       },
     },
   },
