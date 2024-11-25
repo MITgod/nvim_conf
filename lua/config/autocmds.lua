@@ -11,3 +11,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.b.autoformat = false
   end,
 })
+
+-- Handle CGate WebSkins files as HTML files
+local function augroup(name)
+  return vim.api.nvim_createaugroup("lazyvim" .. name, { clear = true })
+end
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup("custom_filetypes"),
+  pattern = { ".wssi", ".wssp" },
+  callback = function(args)
+    vim.cmd("setfiletype html")
+    -- Debug line (optional)
+    print("Set filetype to HTML for: " .. vim.fn.expand("<afile>"))
+  end,
+})
